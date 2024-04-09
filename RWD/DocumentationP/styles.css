@@ -1,0 +1,146 @@
+* {
+    box-sizing: border-box;
+    list-style: none;
+}
+
+html {
+
+     width: 100%;
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    border: 0;
+}
+
+
+
+body {
+   font-size: 14px;
+    letter-spacing: 0.1em;
+    font-family: Roboto;
+    margin: 0;
+    color: #fff0f0;
+    background-color: #3c385a;
+    height: 100vh;
+    width: 100vh;
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content:left;
+}
+
+nav {
+    height: 100%;
+    width: 290px;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 1;
+    padding: 0.5em;
+    background-color: #1e1e28;
+}
+
+nav li {
+    padding: 1em 0;
+}
+
+a:hover {
+    color:  #8250b4;
+}
+
+main{
+    padding: 0.5em;
+    padding-right: 0;
+    margin: 0;
+    height: 100%;
+    width: calc(100% - 300px);
+    margin-left: 300px;
+}
+
+pre {
+    padding-left: 1em;
+    border-radius: 5px;
+    margin: 1.5em auto;
+    background-color: #1e1e28;
+    width: 90%;
+    overflow-x: scroll;
+}
+
+pre header {
+    padding-left: .5em;
+    font-size: 1.5em;
+    border-bottom: solid 1px #d28214;
+}
+
+a {
+    text-decoration: none;
+    color: #fff0f0;
+}
+
+header {
+    border-bottom: solid 5px #d28214;
+    padding: 0.4em 0;
+    margin-bottom: 0.2em;
+    width: 100%;
+    color: #fab432;
+    font-size: 1.8em;
+}
+
+
+table {
+    width: 90%;
+    background-color: #1e1e28;
+    margin: 1.5em auto;
+    text-align: center;
+    border-radius: 5px;
+    border-collapse: collapse;
+}
+
+th {
+    padding: 0.4em 0;
+    border-bottom: solid #3c385a 5px;
+}
+
+td {
+    padding: 0.2em 0;
+}
+
+tr {
+
+    overflow-x: scroll;
+    border-top: solid #3c385a 1px;
+}
+
+li {
+    padding-bottom: 1em;
+}
+
+
+@media (max-width: 700px) {
+    body {
+        display: block;
+    }
+
+    nav {
+        position: sticky;
+        top: -150px;
+        text-align: center;
+        margin: 0 auto;
+        width: 100%;
+        height: 150px;
+        overflow: scroll;
+        border-bottom: solid #3c385a 0.5em;
+    }
+    nav ul {
+        padding: 0
+    }
+
+    nav li {
+        padding: 0.5em 0;
+    }
+
+    main {
+        width: 100%;
+        margin: 0;
+    }
+}

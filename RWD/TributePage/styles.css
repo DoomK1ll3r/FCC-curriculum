@@ -1,0 +1,66 @@
+
+body {
+    width: 100%;
+    margin: 0;
+    font-family: Roboto;
+    background-color: white;
+}
+
+
+
+#img-div {
+    margin: 0;
+    padding: 0 20px;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    border: 3px 0;
+    background-color: #fff7bb;
+}
+
+#image {
+    display: box;
+    max-width: 100%;
+    padding: 0;
+    margin: 0 auto;
+    min-width: 450px;
+}
+
+h1, h2, h3, figure {
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+    text-align: center;
+    border-bottom: solid black 2px;
+}
+
+#tribute-info {
+    width: 45%;
+    min-width: 450px;
+    display: box;
+    justify-content: center;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+main{
+    width: 100%;
+}
+
+#title, footer, footer a{
+    text-align:center;
+    width: 100%;
+    margin: 0;
+    padding: 1rem 0;
+    font-family: Baskerville Roboto;
+    font-style: italic;
+    color: #fffeee;
+    background-color: #8e846f;
+}
+
+footer {
+    margin-top: 2rem;
+}
+
+footer  a:hover {
+    color: #ff5b59;
+}

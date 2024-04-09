@@ -1,0 +1,91 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <title>Restaurant Survery Form</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="styles.css">
+    </head>
+
+    <body>
+
+        <h1 id="title">Restaurant Survey Form</h1>
+        <p id="description">Help us to improve our service</p>
+
+        <form id="survey-form">
+
+            <fieldset>
+                <legend>Personal Data</legend>
+                <label for="name" id="name-label">Name*:
+                    <input id="name" name="name" type="text" required placeholder="Enter your name..."/>
+                </label>
+                <label for="email" id="email-label">Email*:
+                    <input id="email" name="email" type="email" required placeholder="Enter your email..."/>
+                </label>
+                <label for="number" id="number-label">Age:
+                    <input id="number" name="number" type="number" min="18" max="120" placeholder="Enter your age(optional)..."/>
+                </label>
+            </fieldset>
+
+            <fieldset>
+                <legend>Occupation</legend>
+                <label for="dropdown" id="dropdown-label">
+                    What is your occupation?
+                    <select id="dropdown" name="dropwdown">
+                        <option>I prefer not to specify that</option>
+                        <option>Housewife/Househusband</option>
+                        <option>Student</option>
+                        <option>Other</option>
+                    </select>
+                </label>
+            </fieldset>
+
+            <fieldset>
+                <legend>How many times have you ordered food in the last month?</legend>
+                <label for="frequency1" id="radio-label1">
+                    <input value="1" class="inline" type="radio" id="frequency1" name="radio-buttons"/>
+                    0-9 Times
+                </label>
+                <label class="inline" for="frequency2" id="radio-label2">
+                    <input value="2" class="inline" type="radio" id="frequency2" name="radio-buttons"/>
+                    10-19 Times
+                </label>
+                <label for="frequency3" id="radio-label3">
+                    <input value="3" class="inline" type="radio" id="frequency3" name="radio-buttons"/>
+                    20-30 Times
+                </label>
+            </fieldset>
+
+            <fieldset>
+                <legend>What are your favourite dishes?</legend>
+                <label for="pasta" id="pasta-label">
+                    <input class="inline" type="checkbox" id="pasta" name="pasta" value="1"/>
+                    Pasta
+                </label>
+                <label for="eeat" id="meat-label">
+                    <input class="inline" type="checkbox" id="meat" name="meat" value="2"/>
+                    Meat
+                </label>
+                <label for="eggs" id="eggs-label">
+                    <input class="inline" type="checkbox" id="eggs" name="egss" value="3"/>
+                    Eggs
+                </label>
+                <label for="other" id="other-label">
+                    <input class="inline" type="checkbox" id="other" name="other" value="4"/>
+                    Other
+                </label>
+            </fieldset>
+
+            <fieldset>
+                <legend>You are free to leave your comments</legend>
+                <label for="comments" id="comments-label">
+                    <textarea id="comments" name="comments" cols="30" rows="3" placeholder="Leave your comments here..."></textarea>
+                </label>
+            </fieldset>
+
+            <input type="submit" id="submit" name="submit" value="Submit">
+        </form>
+    </body>
+
+    <footer>Test Project made with HTML and CSS</footer>
+</html>

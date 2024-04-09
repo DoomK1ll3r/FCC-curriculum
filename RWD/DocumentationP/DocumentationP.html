@@ -1,0 +1,805 @@
+<!doctype html>
+<html class="no-js" lang="en">
+    <head>
+        <meta charset="utf-8">
+        <title>Zig Documentation</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="./styles.css">
+    </head>
+    <body>
+        <nav id="navbar">
+            <header>Zig Documentation 🔧</header>
+
+            <ul>
+                <li><a class="nav-link" href="#Why_Zig?">Why Zig?</a></li>
+                <li><a class="nav-link" href="#Introduction">Introduction</a></li>
+                <li><a class="nav-link" href="#Comments">Comments</a></li>
+                <li><a class="nav-link" href="#Primitive_Types">Primitive Types</a></li>
+                <li><a class="nav-link" href="#Primitive_Values">Primitive Values</a></li>
+                <li><a class="nav-link" href="#String_Literals">String Literals</a></li>
+                <li><a class="nav-link" href="#Escape_Sequences">Escape Sequences</a></li>
+                <li><a class="nav-link" href="#Assignment">Assignment</a></li>
+                <li><a class="nav-link" href="#Arrays">Arrays</a></li>
+                <li><a class="nav-link" href="#While">While</a></li>
+                <li><a class="nav-link" href="#If">If</a></li>
+                <li><a class="nav-link" href="#Reference">Reference</a></li>
+            </ul>
+        </nav>
+
+        <main id ="main-doc">
+
+            <section class="main-section" id="Why_Zig?">
+                <header>Why Zig?</header>
+                <ul>
+                    <li>No hidden control flow</li>
+                    <li>No hidden allocations</li>
+                    <li>First-class support for no standard library</li>
+                    <li>A Portable Langauage for Libraries</li>
+                    <li>A Package Manager and Build System for Existing Projects</li>
+                    <li>Simplicity</li>
+                    <li>Tooling</li>
+                </ul>
+            </section>
+
+            <section class="main-section" id="Introduction">
+                <header>Introduction</header>
+                <p><a href="https://ziglang.org/">Zig</a> is a general-purpose programming language and toolchain for
+                    maintaining robust, optimal, and reusable software.</p>
+                <ul>
+                    <li><b>Robust</b>
+                        <p>Behavior is correct even for edge cases such as out of memory.</p>
+                    </li>
+                    <li><b>Optimal</b>
+                        <p>Write programs the best way they can behave and perform.</p>
+                    </li>
+                    <li><b>Reusable</b>
+                        <p>The same code works in many environments which have different constraints.</p>
+                    </li>
+                    <li><b>Maintainable</b>
+                        <p>Precisely communicate intent to the compiler and other programmers.
+                            The language imposes a low overhead to reading code and is resilient to changing requirements and environments.</p>
+                    </li
+                </ul>
+            </section>
+
+            <section class="main-section" id="Comments">
+                <header>Comments</header>
+                <p>Zig supports 3 types of comments. Normal comments are ignored, but doc comments and top-level
+                    doc comments are used by the compiler to generate the package documentation.</p>
+
+                <p>The generated documentation is still experimental, and can be produced with: </p>
+                <pre>
+                    <header>Shell</header>
+                    <code>
+$ zig test -femit-docs main.zig
+                    </code>
+                </pre>
+                <pre>
+                    <header>Zig</header>
+                    <code>
+const print = @import("std").debug.print;
+
+pub fn main() void {
+    // Comments in Zig start with "//" and end at the next LF byte (end of line).
+    // The line below is a comment and won't be executed.
+
+    //print("Hello?", .{});
+
+    print("Hello, world!\n", .{}); // another comment
+}
+                    </code>
+                </pre>
+                <pre>
+                    <header>Shell</header>
+                    <code>
+$ zig build-exe comments.zig
+$ ./comments
+Hello, world!
+                    </code>
+                </pre>
+
+                <p>There are no multiline comments in Zig (e.g. like /* */ comments in C).
+                    This allows Zig to have the property that each line of code can be tokenized out of context. </p>
+               </section>
+
+               <section class="main-section" id="Primitive_Types">
+                   <header>Primitive Types</header>
+                   <table>
+                       <tbody>
+                            <tr>
+                                <th><b>Type</b></th>
+                                <th><b>C Equivalent</b></th>
+                                <th><b>Description</b></th>
+                           <tr>
+                            <tr>
+                                <td>i8</td>
+                                <td>int8_t</td>
+                                <td>signed 8-bit integer</td>
+                            </tr>
+                            <tr>
+                                <td>u8</td>
+                                <td>uint8_t</td>
+                                <td>unsigned 8-bit integer</td>
+                            </tr>
+                            <tr>
+                                <td>i16</td>
+                                <td>int16_t</td>
+                                <td>signed 16-bit integer</td>
+                            </tr>
+                            <tr>
+                                <td>u16</td>
+                                <td>uint16_t</td>
+                                <td>unsigned 16-bit integer</td>
+                            </tr>
+                            <tr>
+                                <td>i32</td>
+                                <td>int32_t</td>
+                                <td>signed 32-bit integer</td>
+                            </tr>
+                            <tr>
+                                <td>u32</td>
+                                <td>uint32_t</td>
+                                <td>unsigned 32-bit integer</td>
+                            </tr>
+                            <tr>
+                                <td>i64</td>
+                                <td>int64_t</td>
+                                <td>signed 64-bit integer</td>
+                            </tr>
+                            <tr>
+                                <td>u64</td>
+                                <td>uint64_t</td>
+                                <td>unsigned 64-bit integer</td>
+                            </tr>
+                            <tr>
+                                <td>i128</td>
+                                <td>__int128</td>
+                                <td>signed 128-bit integer</td>
+                            </tr>
+                            <tr>
+                                <td>u128</td>
+                                <td>unsigned__int128</td>
+                                <td>unsigned 128-bit integer</td>
+                            </tr>
+                            <tr>
+                                <td>isize</td>
+                                <td>intptr_t</td>
+                                <td>signed pointer sized integer</td>
+                            </tr>
+                            <tr>
+                                <td>usize</td>
+                                <td>uintptr_t, size_t</td>
+                                <td>unsigned pointer sized integer</td>
+                            </tr>
+                            <tr>
+                                <td>c_char</td>
+                                <td>char</td>
+                                <td>for ABI compatibility with C</td>
+                            </tr>
+                            <tr>
+                                <td>c_short</td>
+                                <td>short</td>
+                                <td>for ABI compatibility with C</td>
+                            </tr>
+                             <tr>
+                                <td>c_ushort</td>
+                                <td>unsigned_short</td>
+                                <td>for ABI compatibility with C</td>
+                            </tr>
+                             <tr>
+                                <td>c_int</td>
+                                <td>int</td>
+                                <td>for ABI compatibility with C</td>
+                            </tr>
+                            <tr>
+                                <td>c_uint</td>
+                                <td>unsigned_int</td>
+                                <td>for ABI compatibility with C</td>
+                            </tr>
+                            <tr>
+                                <td>c_long</td>
+                                <td>long</td>
+                                <td>for ABI compatibility with C</td>
+                            </tr>
+                            <tr>
+                                <td>c_ulong</td>
+                                <td>short</td>
+                                <td>for ABI compatibility with C</td>
+                            </tr>
+                            <tr>
+                                <td>c_longlong</td>
+                                <td>long long</td>
+                                <td>for ABI compatibility with C</td>
+                            </tr>
+                            <tr>
+                                <td>c_ulonglong</td>
+                                <td>unsigned long long</td>
+                                <td>for ABI compatibility with C</td>
+                            </tr>
+                            <tr>
+                                <td>c_longdouble</td>
+                                <td>long double</td>
+                                <td>for ABI compatibility with C</td>
+                            </tr>
+                            <tr>
+                                <td>f16</td>
+                                <td>_Float16</td>
+                                <td>16-bit floating point (10-bit mantissa) IEEE-754-2008 binary16</td>
+                            </tr>
+                            <tr>
+                                <td>f32</td>
+                                <td>float</td>
+                                <td>32-bit floating point (23-bit mantissa) IEEE-754-2008 binary32</td>
+                            </tr>
+                            <tr>
+                                <td>f64</td>
+                                <td>double</td>
+                                <td>64-bit floating point (52-bit mantissa) IEEE-754-2008 binary64</td>
+                            </tr>
+                            <tr>
+                                <td>f80</td>
+                                <td>double</td>
+                                <td>80-bit floating point (64-bit mantissa) IEEE-754-2008 80-bit extended precision</td>
+                            </tr>
+                            <tr>
+                                <td>f128</td>
+                                <td>_Float128</td>
+                                <td>128-bit floating point (112-bit mantissa) IEEE-754-2008 binary128</td>
+                            </tr>
+                            <tr>
+                                <td>bool</td>
+                                <td>bool</td>
+                                <td>true or false</td>
+                            </tr>
+                            <tr>
+                                <td>anyopaque</td>
+                                <td>void</td>
+                                <td>Used for type-erased pointers</td>
+                            </tr>
+                            <tr>
+                                <td>void</td>
+                                <td>(none)</td>
+                                <td>Always the value void{}</td>
+                            </tr>
+                            <tr>
+                                <td>noreturn</td>
+                                <td>(none)</td>
+                                <td>the type of break, continue, return, unreachable, and while (true) {}</td>
+                            </tr>
+                            <tr>
+                                <td>type</td>
+                                <td>(none)</td>
+                                <td>the type of types</td>
+                            </tr>
+                            <tr>
+                                <td>anyerror</td>
+                                <td>(none)</td>
+                                <td>an error code</td>
+                            </tr>
+                            <tr>
+                                <td>comptime_int</td>
+                                <td>(none)</td>
+                                <td>Only allowed for comptime-known values. The type of integer literals.</td>
+                            </tr>
+                            <tr>
+                                <td>comptime_float</td>
+                                <td>(none)</td>
+                                <td>Only allowed for comptime-known values. The type of float literals.</td>
+                            </tr>
+                        </tbody>
+                   </table>
+               </section>
+
+               <section class="main-section" id="Primitive_Values">
+                   <header>Primitive Values</header>
+                   <table>
+                       <tr>
+                           <th><b>Name</b></th>
+                           <th><b>Description</b></th>
+                       </tr>
+                       <tr>
+                           <td>true and false</td>
+                           <td>bool values</td>
+                       </tr>
+                       <tr>
+                           <td>null</td>
+                           <td>used to set an optional type to null</td>
+                       </tr>
+                       <tr>
+                           <td>undefined</td>
+                           <td>used to leave a value unspecified</td>
+                       </tr>
+                   </table>
+               </section>
+
+               <section class="main-section" id="String_Literals">
+                   <header>String Literals</header>
+                   <p>String literals are constant single-item Pointers to null-terminated byte arrays.
+                       The type of string literals encodes both the length, and the fact that they are null-terminated,
+                       and thus they can be coerced to both Slices and Null-Terminated Pointers.
+                       Dereferencing string literals converts them to Arrays. </p>
+                   <p> Because Zig source code is UTF-8 encoded, any non-ASCII bytes appearing within a string literal
+                       in source code carry their UTF-8 meaning into the content of the string in the Zig program;
+                       the bytes are not modified by the compiler.
+                       It is possible to embed non-UTF-8 bytes into a string literal using \xNN notation.</p>
+                   <p>Indexing into a string containing non-ASCII bytes returns individual bytes, whether valid UTF-8 or not.</p>
+                   <p>Unicode code point literals have type comptime_int, the same as Integer Literals.
+                       All Escape Sequences are valid in both string literals and Unicode code point literals. </p>
+
+                   <pre>
+                       <header>Zig</header>
+                        <code>
+const print = @import("std").debug.print;
+const mem = @import("std").mem; // will be used to compare bytes
+
+pub fn main() void {
+    const bytes = "hello";
+    print("{}\n", .{@TypeOf(bytes)});                   // *const [5:0]u8
+    print("{d}\n", .{bytes.len});                       // 5
+    print("{c}\n", .{bytes[1]});                        // 'e'
+    print("{d}\n", .{bytes[5]});                        // 0
+    print("{}\n", .{'e' == '\x65'});                    // true
+    print("{d}\n", .{'\u{1f4a9}'});                     // 128169
+    print("{d}\n", .{'💯'});                            // 128175
+    print("{u}\n", .{'⚡'});
+    print("{}\n", .{mem.eql(u8, "hello", "h\x65llo")});      // true
+    print("{}\n", .{mem.eql(u8, "💯", "\xf0\x9f\x92\xaf")}); // also true
+    const invalid_utf8 = "\xff\xfe";      // non-UTF-8 strings are possible with \xNN notation.
+    print("0x{x}\n", .{invalid_utf8[1]}); // indexing them returns individual bytes...
+    print("0x{x}\n", .{"💯"[1]});    // ...as does indexing part-way through non-ASCII characters
+}
+                        </code>
+                   </pre>
+
+                    <pre>
+                        <header>Shell</header>
+                        <code>
+$ zig build-exe string_literals.zig
+$ ./string_literals
+*const [5:0]u8
+5
+e
+0
+true
+128169
+128175
+⚡
+true
+true
+0xfe
+0x9f
+                        </code>
+                   </pre>
+               </section>
+
+               <section class="main-section" id="Escape_Sequences">
+                   <header>Escape Sequences</header>
+                   <table>
+                       <tr>
+                           <th><b>Escape sequence</b></th>
+                           <th><b>Name</b></th>
+                       </tr>
+                       <tr>
+                           <td>\n</td>
+                           <td>Newline</td>
+                       </tr>
+                       <tr>
+                           <td>\r</td>
+                           <td>Carriage Return</td>
+                       </tr>
+                       <tr>
+                           <td>\t</td>
+                           <td>Tab</td>
+                       </tr>
+                       <tr>
+                           <td>\\</td>
+                           <td>Backslash</td>
+                       </tr>
+                       <tr>
+                           <td>\'</td>
+                           <td>Single quote</td>
+                       </tr>
+                       <tr>
+                           <td>\"</td>
+                           <td>Double Quote</td>
+                       </tr>
+                       <tr>
+                           <td>\xNN</td>
+                           <td>hexadecimal 8-bit byte value (2 digits)</td>
+                       </tr>
+                       <tr>
+                           <td>\u{NNNNNN}</td>
+                           <td>hexadecimal Unuicode code point UTF-8 encoded (1 or more digits)</td>
+                       </tr>
+                   </table>
+               </section>
+
+               <section class="main-section" id="Assignment">
+                   <header>Assignment</header>
+                   <p>Use the const keyword to assign a value to an identifier:</p>
+                   <pre>
+                       <header>Zig</header>
+                        <code>
+const x = 1234;
+
+fn foo() void {
+    // It works at file scope as well as inside functions.
+    const y = 5678;
+
+    // Once assigned, an identifier cannot be changed.
+    y += 1;
+}
+
+pub fn main() void {
+    foo();
+}
+                        </code>
+                   </pre>
+                   <pre>
+                       <header>Shell</header>
+                        <code>
+$ zig build-exe constant_identifier_cannot_change.zig
+constant_identifier_cannot_change.zig:8:7: error: cannot assign to constant
+    y += 1;
+    ~~^~~~
+    referenced by:
+    main: constant_identifier_cannot_change.zig:12:5
+    callMain: /home/ci/actions-runner/_work/zig-bootstrap/out/host/lib/zig/std/start.zig:501:17
+    remaining reference traces hidden; use '-freference-trace' to see all reference traces
+                        </code>
+                   </pre>
+
+                   <p>const applies to all of the bytes that the identifier immediately addresses. Pointers have their own const-ness.</p>
+
+                    <p>If you need a variable that you can modify, use the var keyword:</p>
+
+                    <pre>
+                        <header>Zig</header>
+                        <code>
+const print = @import("std").debug.print;
+
+pub fn main() void {
+    var y: i32 = 5678;
+
+    y += 1;
+
+    print("{d}", .{y});
+}
+                        </code>
+                    </pre>
+                    <pre>
+                        <header>Shell</header>
+                        <code>
+$ zig build-exe mutable_var.zig
+$ ./mutable_var
+5679
+                        </code>
+                    </pre>
+
+                    <p>Variables must be initialized:</p>
+
+                    <pre>
+                        <header>Zig</header>
+                        <code>
+pub fn main() void {
+    var x: i32;
+
+    x = 1;
+}
+                        </code>
+                    </pre>
+                    <pre>
+                        <header>Shell</header>
+                        <code>
+$ zig build-exe var_must_be_initialized.zig
+var_must_be_initialized.zig:2:15: error: expected '=', found ';'
+    var x: i32;
+              ^
+                        </code>
+                    </pre>
+               </section>
+
+               <section class="main-section" id="Arrays">
+                   <header>Arrays</header>
+
+                   <pre>
+                       <header>Zig</header>
+                        <code>
+const expect = @import("std").testing.expect;
+const assert = @import("std").debug.assert;
+const mem = @import("std").mem;
+
+// array literal
+const message = [_]u8{ 'h', 'e', 'l', 'l', 'o' };
+
+// get the size of an array
+comptime {
+    assert(message.len == 5);
+}
+
+// A string literal is a single-item pointer to an array.
+const same_message = "hello";
+
+comptime {
+    assert(mem.eql(u8, &message, same_message));
+}
+
+test "iterate over an array" {
+    var sum: usize = 0;
+    for (message) |byte| {
+        sum += byte;
+    }
+    try expect(sum == 'h' + 'e' + 'l' * 2 + 'o');
+}
+
+// modifiable array
+var some_integers: [100]i32 = undefined;
+
+test "modify an array" {
+    for (&some_integers, 0..) |*item, i| {
+        item.* = @intCast(i);
+    }
+    try expect(some_integers[10] == 10);
+    try expect(some_integers[99] == 99);
+}
+
+// array concatenation works if the values are known
+// at compile time
+const part_one = [_]i32{ 1, 2, 3, 4 };
+const part_two = [_]i32{ 5, 6, 7, 8 };
+const all_of_it = part_one ++ part_two;
+comptime {
+    assert(mem.eql(i32, &all_of_it, &[_]i32{ 1, 2, 3, 4, 5, 6, 7, 8 }));
+}
+
+// remember that string literals are arrays
+const hello = "hello";
+const world = "world";
+const hello_world = hello ++ " " ++ world;
+comptime {
+    assert(mem.eql(u8, hello_world, "hello world"));
+}
+
+// ** does repeating patterns
+const pattern = "ab" ** 3;
+comptime {
+    assert(mem.eql(u8, pattern, "ababab"));
+}
+
+// initialize an array to zero
+const all_zero = [_]u16{0} ** 10;
+
+comptime {
+    assert(all_zero.len == 10);
+    assert(all_zero[5] == 0);
+}
+
+// use compile-time code to initialize an array
+var fancy_array = init: {
+    var initial_value: [10]Point = undefined;
+    for (&initial_value, 0..) |*pt, i| {
+        pt.* = Point{
+            .x = @intCast(i),
+            .y = @intCast(i * 2),
+        };
+    }
+    break :init initial_value;
+};
+const Point = struct {
+    x: i32,
+    y: i32,
+};
+
+test "compile-time array initialization" {
+    try expect(fancy_array[4].x == 4);
+    try expect(fancy_array[4].y == 8);
+}
+
+// call a function to initialize an array
+var more_points = [_]Point{makePoint(3)} ** 10;
+fn makePoint(x: i32) Point {
+    return Point{
+        .x = x,
+        .y = x * 2,
+    };
+}
+test "array initialization with function calls" {
+    try expect(more_points[4].x == 3);
+    try expect(more_points[4].y == 6);
+    try expect(more_points.len == 10);
+}
+                        </code>
+                   </pre>
+                   <pre>
+                       <header>Shell</header>
+                        <code>
+$ zig test test_arrays.zig
+1/4 test_arrays.test.iterate over an array... OK
+2/4 test_arrays.test.modify an array... OK
+3/4 test_arrays.test.compile-time array initialization... OK
+4/4 test_arrays.test.array initialization with function calls... OK
+All 4 tests passed.
+                        </code>
+                   </pre>
+               </section>
+
+               <section class="main-section" id="While">
+                   <header>While</header>
+                   <p>A while loop is used to repeatedly execute an expression until some condition is no longer true.</p>
+                   <pre>
+                       <header>Zig</header>
+                        <code>
+const expect = @import("std").testing.expect;
+
+test "while basic" {
+    var i: usize = 0;
+    while (i < 10) {
+        i += 1;
+    }
+    try expect(i == 10);
+}
+                        </code>
+                   </pre>
+                   <pre>
+                       <header>Shell</header>
+                        <code>
+$ zig test test_while.zig
+1/1 test_while.test.while basic... OK
+All 1 tests passed.
+                        </code>
+                   </pre>
+
+                   <p>Use break to exit a while loop early.</p>
+
+                   <pre>
+                       <header>Zig</header>
+                        <code>
+const expect = @import("std").testing.expect;
+
+test "while break" {
+    var i: usize = 0;
+    while (true) {
+        if (i == 10)
+            break;
+        i += 1;
+    }
+    try expect(i == 10);
+}
+                        </code>
+                   </pre>
+                   <pre>
+                       <header>Shell</header>
+                        <code>
+$ zig test test_while_break.zig
+1/1 test_while_break.test.while break... OK
+All 1 tests passed.
+                        </code>
+                   </pre>
+
+                   <p>Use continue to jump back to the beginning of the loop.</p>
+
+                   <pre>
+                       <header>Zig</header>
+                        <code>
+const expect = @import("std").testing.expect;
+
+test "while continue" {
+    var i: usize = 0;
+    while (true) {
+        i += 1;
+        if (i < 10)
+            continue;
+        break;
+    }
+    try expect(i == 10);
+}
+                        </code>
+                   </pre>
+                   <pre>
+                       <header>Shell</header>
+                        <code>
+$ zig test test_while_continue.zig
+1/1 test_while_continue.test.while continue... OK
+All 1 tests passed.
+                        </code>
+                   </pre>
+               </section>
+
+               <section class="main-section" id="If">
+                   <header>If</header>
+                   <pre>
+                       <header>Zig</header>
+                        <code>
+// If expressions have three uses, corresponding to the three types:
+// * bool
+// * ?T
+// * anyerror!T
+
+const expect = @import("std").testing.expect;
+
+test "if expression" {
+    // If expressions are used instead of a ternary expression.
+    const a: u32 = 5;
+    const b: u32 = 4;
+    const result = if (a != b) 47 else 3089;
+    try expect(result == 47);
+}
+
+test "if boolean" {
+    // If expressions test boolean conditions.
+    const a: u32 = 5;
+    const b: u32 = 4;
+    if (a != b) {
+        try expect(true);
+    } else if (a == 9) {
+        unreachable;
+    } else {
+        unreachable;
+    }
+}
+
+test "if error union" {
+    // If expressions test for errors.
+    // Note the |err| capture on the else.
+
+    const a: anyerror!u32 = 0;
+    if (a) |value| {
+        try expect(value == 0);
+    } else |err| {
+        _ = err;
+        unreachable;
+    }
+
+    const b: anyerror!u32 = error.BadValue;
+    if (b) |value| {
+        _ = value;
+        unreachable;
+    } else |err| {
+        try expect(err == error.BadValue);
+    }
+
+    // The else and |err| capture is strictly required.
+    if (a) |value| {
+        try expect(value == 0);
+    } else |_| {}
+
+    // To check only the error value, use an empty block expression.
+    if (b) |_| {} else |err| {
+        try expect(err == error.BadValue);
+    }
+
+    // Access the value by reference using a pointer capture.
+    var c: anyerror!u32 = 3;
+    if (c) |*value| {
+        value.* = 9;
+    } else |_| {
+        unreachable;
+    }
+
+    if (c) |value| {
+        try expect(value == 9);
+    } else |_| {
+        unreachable;
+    }
+}
+                        </code>
+                   </pre>
+                   <pre>
+                       <header>Shell</header>
+                        <code>
+$ zig test test_if.zig
+1/3 test_if.test.if expression... OK
+2/3 test_if.test.if boolean... OK
+3/3 test_if.test.if error union... OK
+All 3 tests passed.
+                        </code>
+                   </pre>
+               </section>
+
+               <section class="main-section" id="Reference">
+                   <header>Reference</header>
+                   <p>Documentation borrowed from <a href="https://ziglang.org/learn/">ziglang.org</a></p>
+               </section>
+        </main>
+    </body>
+</html>
