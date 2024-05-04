@@ -1,0 +1,82 @@
+:root {
+    --bck-color: #14141e;
+    --bck-color2: #0a0a14;
+    --radius: 0.5rem;
+    font-size: 10px;
+    font-family: Roboto, sans-serif;
+}
+
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+main {
+    text-align: center;
+    color: white;
+    font-size: 2.5rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    width: 100vw;
+    height: 100vh;
+    min-width: 400px;
+    min-height: 700px;
+    background-color: var(--bck-color);
+}
+
+#buttons {
+    display: flex;
+    flex-direction: row;
+    gap: 3rem;
+}
+
+#check-btn, #clear-btn, #user-input {
+    font-size: 2rem;
+}
+
+h1 {
+    padding: 1rem;
+    margin: 2rem 0;
+    border-bottom: 1px lightgray solid;
+}
+
+#results-div {
+    width: 40%;
+    height: 25%;
+    min-width: 300px;
+    min-height: 400px;
+    max-height: 550px;
+    max-width: 500px;
+    font-size: 2rem;
+    background-color: var(--bck-color2);
+    overflow-y: scroll;
+}
+
+#results-div, #check-btn, #clear-btn, #user-input, #hint {
+    padding: 0.5em;
+    border-radius: var(--radius);
+    margin: 1.5rem 0;
+    border: none;
+}
+
+.aResult {
+    margin: 1.5rem;
+}
+
+.validInput, .invalidInput {
+    border-radius: 0.25rem;
+    padding: 0.25rem;
+}
+
+.validInput {
+    color: green;
+    border: 1px solid green;
+}
+
+.invalidInput {
+    color: red;
+    border: 1px solid red;
+}

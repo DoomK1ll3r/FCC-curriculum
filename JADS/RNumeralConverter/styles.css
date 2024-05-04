@@ -1,0 +1,57 @@
+:root {
+    --bck-color: #14141e;
+    --bck-color2: #0a0a14;
+    --radius: 0.5rem;
+    font-size: 10px;
+    font-family: Roboto, sans-serif;
+}
+
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+main {
+    text-align: center;
+    color: white;
+    font-size: 3rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    width: 100vw;
+    height: 100vh;
+    min-width: 400px;
+    min-height: 700px;
+    gap: 2rem;
+    background-color: var(--bck-color);
+}
+
+#hint {
+    background-color: var(--bck-color2);
+    color: green;
+    font-size: 1.8rem;
+}
+
+#convert-btn, #number {
+    font-size: 2rem;
+}
+
+h1 {
+    padding: 1rem;
+    margin: 2rem 0;
+    border-bottom: 1px lightgray solid;
+}
+
+#output {
+    font-size: 2rem;
+    background-color: var(--bck-color2);
+}
+
+#output, #convert-btn, #number, #hint {
+    padding: 0.5em;
+    border-radius: var(--radius);
+    margin: 1.5rem 0;
+    border: none;
+}

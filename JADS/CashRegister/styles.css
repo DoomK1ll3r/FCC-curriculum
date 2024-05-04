@@ -1,0 +1,99 @@
+:root {
+    --bck-color: #14141e;
+    --bck-color2: #0a0a14;
+    --radius: 0.5rem;
+    font-size: 10px;
+    font-family: Roboto, sans-serif;
+}
+
+* {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+main {
+    text-align: center;
+    color: white;
+    font-size: 2.5rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    width: 100vw;
+    height: 100vh;
+    min-width: 400px;
+    min-height: 700px;
+    background-color: var(--bck-color);
+    gap: 1rem;
+}
+
+#purchase-btn, #cash, #price{
+    font-size: 2rem;
+}
+
+h1{
+    padding: 1rem;
+    margin: 2rem 0;
+    border-bottom: 1px lightgray solid;
+}
+
+#cash-wrapper, #purchase-wrapper {
+    display: flex;
+    flex-direction: row;
+    gap: 2rem;
+    align-items: center;
+    justify-content: center;
+}
+
+#cash-wrapper {
+    max-height: 400px;
+    width: 100%;
+}
+
+#drawer {
+    width: 100%;
+}
+
+#drawer-wrapper, #change-wrapper {
+    width: 50%;
+    height: 98%;
+    min-width: 200px;
+    min-height: 300px;
+    max-height: 400px;
+    max-width: 300px;
+    font-size: 2rem;
+    background-color: var(--bck-color2);
+    overflow-y: scroll;
+}
+
+#price {
+    background-color: lightyellow;
+}
+
+#results-div {
+    width: 100%;
+}
+
+#drawer-wrapper, #change-wrapper, #purchase-btn, #cash, #price {
+    padding: 0.25em;
+    border-radius: var(--radius);
+    margin: 1.5rem 0;
+    border: none;
+}
+
+li{
+    border-radius: 0.25rem;
+    padding: 0.25rem;
+}
+
+#price, #open {
+    color: green;
+    border: 1px solid green;
+}
+
+#insufficient-funds {
+    color: red;
+    border: 1px solid red;
+}

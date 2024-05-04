@@ -1,0 +1,56 @@
+:root {
+    --bck-color: #14141e;
+    --bck-color2: #0a0a14;
+    --radius: 0.5rem;
+    font-size: 10px;
+    font-family: Roboto, sans-serif;
+}
+
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+main {
+    text-align: center;
+    color: white;
+    font-size: 3rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    width: 100vw;
+    height: 100vh;
+    min-width: 400px;
+    min-height: 700px;
+    gap: 2rem;
+    background-color: var(--bck-color);
+}
+
+#text-input {
+    font-size: 2rem;
+    padding: 0.5rem;
+}
+
+#check-btn {
+    font-size: 2rem;
+    padding: 0.5rem;
+}
+
+h1 {
+    padding: 1rem;
+    margin: 2rem 0;
+    border-bottom: 1px lightgray solid;
+}
+
+#result {
+    font-size: 2rem;
+    padding: 0.5rem;
+    background-color: var(--bck-color2);
+}
+
+#result, #check-btn, #text-input {
+    border-radius: var(--radius);
+    margin: 1.5rem 0;
+}
