@@ -169,6 +169,10 @@ a {
     color: white;
 }
 
+#welcome-logo {
+    width: 15%;
+    max-width: 200px;
+}
 
 @media (max-width: 700px){
     body {
