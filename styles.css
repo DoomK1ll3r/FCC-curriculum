@@ -30,7 +30,7 @@ main {
     flex-direction: column;
     align-items: center;
     display: flex;
-    padding-top: 10rem;
+    padding-top: 8rem;
     padding-bottom: 2rem;
 }
 #projects-wrapper {
@@ -64,6 +64,8 @@ main {
 }
 
 header {
+    display: flex;
+    justify-content: center;
     background-color: var(--back-high);
     position: fixed;
     width: 100%;
@@ -73,14 +75,17 @@ header {
 }
 
 nav {
+    display: flex;
+    justify-content: space-between;
+    gap: 2rem;
+    align-items: center;
     height: 100%;
     width: 100%;
     max-width: 500px;
     max-width: 700px;
-    margin-left:auto;
-    margin-right: 2rem;
+    margin: 0 2rem;
 }
-nav ul, #contact-links {
+#navbar, #contact-links {
     align-items: center;
     display: flex;
     flex-direction: row;
@@ -95,7 +100,7 @@ nav ul, #contact-links {
 
 section {
     display: flex;
-    justify-content: center;
+    justify-content: space-evenly;
     align-items: center;
     width: 100%;
     min-height: 100vh;
@@ -170,8 +175,14 @@ a {
 }
 
 #welcome-logo {
-    width: 15%;
-    max-width: 200px;
+    width: 30%;
+    max-width: 180px;
+}
+
+#nav-logo {
+    filter: invert(1);
+    flex-basis: 10%;
+    width: 4rem;
 }
 
 @media (max-width: 700px){
